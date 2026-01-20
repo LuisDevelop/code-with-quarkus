@@ -1,66 +1,28 @@
-# code-with-quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+1. Framework seleccionado
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Para el desarrollo de la actividad se utilizó el framework Quarkus versión 3.30.6, el cual está orientado a la construcción de aplicaciones Java modernas y optimizadas para entornos cloud-native. Quarkus se caracteriza por su rápido tiempo de arranque, bajo consumo de recursos y soporte nativo para el desarrollo de APIs, lo que lo convierte en una alternativa eficiente para implementar servicios GraphQL.
 
-## Running the application in dev mode
+2. Librería GraphQL utilizada
 
-You can run your application in dev mode that enables live coding using:
+La implementación de GraphQL se realizó mediante la librería SmallRye GraphQL, integrada a Quarkus a través de la extensión quarkus-smallrye-graphql. Esta librería implementa la especificación MicroProfile GraphQL, permitiendo definir consultas GraphQL directamente desde clases Java utilizando anotaciones, sin necesidad de escribir manualmente el esquema.
 
-```shell script
-./mvnw quarkus:dev
-```
+3. Instalación y configuración de GraphQL
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+El proyecto fue generado utilizando la herramienta Quarkus Code, seleccionando el sistema de construcción Maven y agregando la extensión SmallRye GraphQL. Durante la configuración se ajustó el proyecto para trabajar con Java 17, garantizando compatibilidad con la versión instalada del JDK.
+Posteriormente, el proyecto fue ejecutado en modo desarrollo utilizando el comando quarkus:dev, lo que permitió habilitar el live coding para detectar cambios automáticamente  
+```shell script .\mvnw.cmd quarkus:dev```
 
-## Packaging and running the application
+4. Implementación de la funcionalidad GraphQL
 
-The application can be packaged using:
+Se definió un modelo de datos denominado Producto, el cual contiene los atributos id, nombre y precio.
+A continuación, se implementó una clase de servicio encargada de retornar una lista de productos simulados. Finalmente, se creó un recurso GraphQL utilizando la anotación @GraphQLApi, donde se expuso una consulta llamada productos, permitiendo obtener la información de los productos disponibles.
 
-```shell script
-./mvnw package
-```
+5. Prueba de funcional
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+La funcionalidad GraphQL fue probada mediante la interfaz GraphiQL, disponible en el endpoint [/q/graphql-ui](http://localhost:8080/q/graphql-ui).
+Desde esta interfaz se ejecutó la consulta GraphQL correspondiente, obteniendo una respuesta en formato JSON con la lista de productos definidos, lo que evidencia el correcto funcionamiento del servicio.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
-If you want to build an _über-jar_, execute the following command:
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- SmallRye GraphQL ([guide](https://quarkus.io/guides/smallrye-graphql)): Create GraphQL Endpoints using the code-first approach from MicroProfile GraphQL
-
-## Provided Code
-
-### SmallRye GraphQL
-
-Start coding with this Hello GraphQL Query
-
-[Related guide section...](https://quarkus.io/guides/smallrye-graphql)
