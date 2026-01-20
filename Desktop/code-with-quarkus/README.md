@@ -1,5 +1,5 @@
 Prerrequisitos
-JDK 17 y Quarkus 3.30.6
+JDK 17, Maven y Quarkus 3.30.6
 
 
 1. Framework seleccionado
